@@ -1,0 +1,302 @@
+@import './variables.scss';
+
+// 全局樣式
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-family;
+  line-height: 1.6;
+  color: $gray-800;
+  background-color: $gray-50;
+}
+
+// 通用工具類
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-4;
+  
+  @media (min-width: $breakpoint-lg) {
+    padding: 0 $spacing-6;
+  }
+}
+
+.section {
+  padding: $spacing-16 0;
+  
+  @media (min-width: $breakpoint-lg) {
+    padding: $spacing-20 0;
+  }
+}
+
+// 玻璃擬態效果
+.glass-effect {
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+// 漸變背景
+.gradient-bg {
+  background: $gradient-primary;
+}
+
+.gradient-bg-secondary {
+  background: $gradient-secondary;
+}
+
+// 動畫
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite;
+}
+
+// 響應式工具類
+.hidden {
+  display: none !important;
+}
+
+@media (min-width: $breakpoint-sm) {
+  .sm\:block {
+    display: block !important;
+  }
+  .sm\:hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .md\:block {
+    display: block !important;
+  }
+  .md\:hidden {
+    display: none !important;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .lg\:block {
+    display: block !important;
+  }
+  .lg\:hidden {
+    display: none !important;
+  }
+}
+
+// 按鈕樣式
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3 $spacing-6;
+  border-radius: $border-radius-md;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+  
+  &--primary {
+    background: $gradient-primary;
+    color: $white;
+    
+    &:hover {
+      background: linear-gradient(135deg, $primary-dark 0%, #0a5d56 100%);
+    }
+  }
+  
+  &--secondary {
+    background: $gradient-secondary;
+    color: $white;
+  }
+  
+  &--outline {
+    background: transparent;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+    
+    &:hover {
+      background: $primary-color;
+      color: $white;
+    }
+  }
+  
+  &--glass {
+    @extend .glass-effect;
+    color: $white;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// 卡片樣式
+.card {
+  background: $white;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-md;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $shadow-xl;
+  }
+  
+  &--glass {
+    @extend .glass-effect;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+}
+
+// 文字樣式
+.text-gradient {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// 網格系統
+.grid {
+  display: grid;
+  gap: $spacing-6;
+  
+  &--2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  &--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  &--4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+  }
+  
+  @media (min-width: $breakpoint-md) and (max-width: $breakpoint-lg) {
+    &--4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+// 彈性布局
+.flex {
+  display: flex;
+  
+  &--center {
+    align-items: center;
+    justify-content: center;
+  }
+  
+  &--between {
+    justify-content: space-between;
+  }
+  
+  &--column {
+    flex-direction: column;
+  }
+  
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+
+// 間距工具類
+.m-0 { margin: 0; }
+.m-1 { margin: $spacing-1; }
+.m-2 { margin: $spacing-2; }
+.m-3 { margin: $spacing-3; }
+.m-4 { margin: $spacing-4; }
+.m-5 { margin: $spacing-5; }
+.m-6 { margin: $spacing-6; }
+.m-8 { margin: $spacing-8; }
+.m-10 { margin: $spacing-10; }
+.m-12 { margin: $spacing-12; }
+
+.p-0 { padding: 0; }
+.p-1 { padding: $spacing-1; }
+.p-2 { padding: $spacing-2; }
+.p-3 { padding: $spacing-3; }
+.p-4 { padding: $spacing-4; }
+.p-5 { padding: $spacing-5; }
+.p-6 { padding: $spacing-6; }
+.p-8 { padding: $spacing-8; }
+.p-10 { padding: $spacing-10; }
+.p-12 { padding: $spacing-12; } 
